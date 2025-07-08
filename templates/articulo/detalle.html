@@ -12,10 +12,7 @@
         {% if usuario.es_admin %}
         {% endif %}
         <a href="{% url 'articulo:editar' pk=articulo.id %}" class="card-link">Editar</a>
-        <form method="post" action="{% url 'articulo:borrar' pk=articulo.id %}">
-        {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Eliminar</button>
-        </form>
+        <a href="{% url 'articulo:borrar' pk=articulo.id %}" class="card-link">Borrar</a>
     </div>
 </div>
 

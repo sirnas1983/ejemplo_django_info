@@ -1,0 +1,16 @@
+{% extends '../master.html' %}
+
+{% block titulo %}Borrar Articulo{% endblock %}
+
+{% block contenido %}
+<div class="alert alert-danger mt-4">
+    <h4>¿Seguro que querés eliminar el artículo?</h4>
+    <p><strong>{{ object.titulo }}</strong></p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+        <a href="{% url 'articulo:detalle' object.id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

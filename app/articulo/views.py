@@ -26,5 +26,7 @@ class ArticuloVistaEditar(UpdateView):
     template_name = 'articulo/crear.html'
     success_url = reverse_lazy('articulo:lista')
 
-class ArticuloVistaEditar(DeleteView):
+class ArticuloVistaBorrar(DeleteView):
     model = Articulo
+    template_name = 'articulo/confirmar-borrado.html'
+    success_url = reverse_lazy('articulo:lista')
