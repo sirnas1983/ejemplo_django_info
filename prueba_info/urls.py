@@ -20,13 +20,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from prueba_info.views import prueba
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('articulo/', include('app.articulo.urls')),
-    path('prueba/', prueba )
-]
+    path('articulo/', include('app.articulo.urls'))
+    ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

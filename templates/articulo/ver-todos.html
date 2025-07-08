@@ -1,0 +1,16 @@
+{% extends '../master.html' %}
+
+<!-- {% block titulo %}Detalle Articulo - art. {{ articulo.id }}{% endblock %} -->
+
+{% block contenido %}
+<ol class="list-group list-group-numbered">
+    {% for articulo in articulos %}
+    <li class="list-group-item">
+        <div class="d-flex justify-content-between w-100">
+            <div>{{ articulo.titulo }}</div>
+            <div><a href="{% url 'articulo:detalle' pk=articulo.id %}">Ver detalle</a></div>
+        </div>
+    </li>
+    {% endfor %}
+</ol>
+{% endblock %}
