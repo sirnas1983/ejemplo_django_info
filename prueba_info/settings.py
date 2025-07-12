@@ -40,6 +40,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTH_USER_MODEL = 'app.usuario'
 
 ROOT_URLCONF = 'prueba_info.urls'
 

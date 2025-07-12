@@ -3,14 +3,25 @@
 <!-- {% block titulo %}Detalle Articulo - art. {{ articulo.id }}{% endblock %} -->
 
 {% block contenido %}
+<a class="btn btn-primary mb-3" href="{% url 'articulo:crear' %}">
+    Agregar
+</a>
 <ol class="list-group list-group-numbered">
+    <p> {{ user.is_staff }}</p>
     {% for articulo in articulos %}
-    <li class="list-group-item">
-        <div class="d-flex justify-content-between w-100">
-            <div>{{ articulo.titulo }}</div>
-            <div><a href="{% url 'articulo:detalle' pk=articulo.id %}">Ver detalle</a></div>
-        </div>
-    </li>
+
+        {% if articulo.esta_habilitado or user.is_staff %}
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between w-100">
+                    <div>{{ articulo.titulo }}</div>
+                    <div><a href="{% url 'articulo:detalle' pk=articulo.id %}">Ver detalle</a></div>
+                    <div><strong>Fecha de creacion:</strong> {{ articulo.fecha_creacion }}</div>
+                </div>
+                {% if not articulo.esta_habilitado %}
+                    <p style="color:red">Este articulo se encuentra temporalmente deshabilitado</p>
+                {% endif %}
+            </li>
+        {% endif %}
     {% endfor %}
 </ol>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.urls import path
 
 from app.articulo.views import ArticuloVistaBorrar, ArticuloVistaCrear, ArticuloVistaDetalle, ArticuloVistaEditar, ArticuloVistaVerTodos
 
-app_name = 'articulo'
+app_name = 'articulo' # importante para hacer navegacion con nombre de vistas
 
 urlpatterns = [
     path('crear/', ArticuloVistaCrear.as_view() , name='crear'),

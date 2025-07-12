@@ -1,6 +1,7 @@
 from django import forms
 from app.articulo.models import Articulo
 
+
 class ArticuloFormulario(forms.ModelForm):
 
     class Meta:
@@ -13,6 +14,4 @@ class ArticuloFormulario(forms.ModelForm):
             'categoria' : forms.Select(attrs={'class':'form-select'}),
             'esta_habilitado' : forms.CheckboxInput()
         }
-
-
-        
+     
