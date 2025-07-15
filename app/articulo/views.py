@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from app.articulo.forms import ArticuloFormulario
@@ -10,7 +9,11 @@ class ArticuloVistaVerTodos(ListView):
     context_object_name = 'articulos'
     template_name = 'articulo/ver-todos.html'
 
-class ArticuloVistaCrear(CreateView):
+class ArticuloVistaCrear(UserPassesTestMixin, CreateView):
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.request.user.rol == 'escritor'
+
     model = Articulo
     form_class = ArticuloFormulario
     template_name = 'articulo/crear.html'
@@ -25,16 +28,21 @@ class ArticuloVistaDetalle(DetailView):
     template_name = "articulo/detalle.html"
     context_object_name = 'articulo'
 
-class ArticuloVistaEditar(UpdateView):
+class ArticuloVistaEditar(UserPassesTestMixin,UpdateView):
+
+    def test_func(self):
+        return self.request.user == self.get_object().creado_por or self.request.user.is_superuser
+
     model = Articulo
     form_class = ArticuloFormulario
+    context_object_name = 'articulo'
     template_name = 'articulo/crear.html'
     success_url = reverse_lazy('articulo:lista')
 
 class ArticuloVistaBorrar(UserPassesTestMixin, DeleteView):
 
     def test_func(self):
-        return self.request.user.is_superuser or self.request.user == self.get_object().creado_por
+        return self.request.user == self.get_object().creado_por or self.request.user.is_superuser
 
     model = Articulo
     template_name = 'articulo/confirmar-borrado.html'

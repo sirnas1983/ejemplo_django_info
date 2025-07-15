@@ -3,10 +3,34 @@
 {% block titulo %}Crear Articulo{% endblock %}
 
 {% block contenido %}
-<form method="post" class="form">
+<form method="post" class="form" enctype="multipart/form-data">
 {% csrf_token %}
 {{ form.as_p }}
 <button type="submit">Guardar Articulo</button>
+<img src="{{ articulo.imagen_principal.url }}"  id="imagen_principal_preview" style="max-width: 30vw;" alt="Previsualizacion de imagen">
 </form>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const inputFile = document.querySelector('input[type="file"][name="imagen_principal"]');
+        const preview = document.getElementById('imagen_principal_preview');
+
+        if (inputFile) {
+            inputFile.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    preview.src = '';
+                    preview.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}

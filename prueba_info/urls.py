@@ -23,7 +23,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls), # para poder ingresar primero hay que crear el superadmin
-    path('articulo/', include('app.articulo.urls'))
+    path('articulo/', include('app.articulo.urls')),
+    path('usuario/', include('app.usuario.urls') )
     ]
 
 if settings.DEBUG:

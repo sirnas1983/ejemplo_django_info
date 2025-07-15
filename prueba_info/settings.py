@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'app.articulo',
+    'app.usuario',
 ]
 
 MIDDLEWARE = [
@@ -40,7 +41,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-AUTH_USER_MODEL = 'app.usuario'
+AUTH_USER_MODEL = 'usuario.Usuario' # Importante para poder usar modelo de usuarios personalizados
 
 ROOT_URLCONF = 'prueba_info.urls'
 

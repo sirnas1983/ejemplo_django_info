@@ -3,9 +3,11 @@
 <!-- {% block titulo %}Detalle Articulo - art. {{ articulo.id }}{% endblock %} -->
 
 {% block contenido %}
+{% if user.rol != 'lector' or user.is_superuser %}
 <a class="btn btn-primary mb-3" href="{% url 'articulo:crear' %}">
     Agregar
 </a>
+{% endif %}
 <ol class="list-group list-group-numbered">
     <p> {{ user.is_staff }}</p>
     {% for articulo in articulos %}

@@ -6,7 +6,7 @@ class ArticuloFormulario(forms.ModelForm):
 
     class Meta:
         model = Articulo
-        fields = ['titulo', 'subtitulo', 'contenido', 'categoria', 'esta_habilitado']
+        fields = ['titulo', 'subtitulo', 'contenido', 'categoria', 'esta_habilitado', 'imagen_principal']
         widgets = {
             'titulo' : forms.TextInput(attrs={'class':'form-control'}),
             'subtitulo' : forms.TextInput(attrs={'class':'form-control'}),
